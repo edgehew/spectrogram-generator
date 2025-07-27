@@ -39,6 +39,7 @@ func DownloadAudio(url, audioPath string) error {
 	if format == nil {
 		return fmt.Errorf("no suitable audio format found for video: %s", video.Title)
 	}
+
 	log.Println("Downloading audio from YouTube video:", url)
 	stream, _, err := client.GetStream(video, format)
 	if err != nil {

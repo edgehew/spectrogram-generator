@@ -45,14 +45,13 @@ func GenerateSpectrogram(inputPath, outputPath string, windowSize, hopSize int) 
 	}
 
 	// Spectrogram parameters
-	//sampleRate := int(format.SampleRate)
 	numChannels := int(format.NumChannels)
 	width := len(samples)/(hopSize*numChannels) + 1
 	height := windowSize / 2 // Nyquist frequency
 	spectrogram := make([][]float64, width)
 
 	// Compute FFT for each window
-	for i := 0; i < width; i++ {
+	for i := range width {
 		start := i * hopSize
 		end := start + windowSize
 		if end > len(samples) {
