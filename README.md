@@ -2,7 +2,7 @@
 
 This project is a Go application that allows users to generate an audio spectrogram from a YouTube video URL. The application downloads the audio from the specified YouTube video URL and creates a spectrogram image in PNG format.
 
-This project relies on ffmepg to convert downloaded audio files in WAV format.
+This project relies on ffmepg to convert downloaded audio files to WAV format.
 
 ## Project Structure
 
