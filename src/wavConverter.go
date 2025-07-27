@@ -29,9 +29,9 @@ func convertToWAV(inputPath, outputPath string) error {
 	}
 
 	// Read error output
-	slurp, _ := io.ReadAll(stderr)
-	if len(slurp) > 0 {
-		fmt.Printf("FFmpeg warnings/errors: %s\n", slurp)
+	ffmpegErrorLog, _ := io.ReadAll(stderr)
+	if len(ffmpegErrorLog) > 0 {
+		fmt.Printf("FFmpeg warnings/errors: %s\n", ffmpegErrorLog)
 	}
 
 	// Wait for the command to complete
@@ -40,7 +40,7 @@ func convertToWAV(inputPath, outputPath string) error {
 	}
 
 	// Verify output file was created
-	if _, err := os.Stat(outputPath); os.IsNotExist(err) {
+	if !fileExists(outputPath) {
 		return fmt.Errorf("output file was not created: %s", outputPath)
 	}
 
