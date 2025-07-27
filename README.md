@@ -38,12 +38,31 @@ youtube-spectrogram
    go mod tidy
    ```
 
+5. **Build the application:** Run the following command
+   ```
+   go build src/*.go
+   ```
+
 ## Usage
 
 To run the application, use the following command:
 
 ```
-go run src/main.go -url <YouTube-Video-URL>
+go run src/*.go --help
+// or after building the application
+./downloader --help
+```
+
+```
+Usage:
+  -hop int
+        Hop size for the spectrogram (default 512)
+  -output string
+        Output path for the spectrogram image (default "spectrogram.png")
+  -url string
+        YouTube video URL
+  -window int
+        FFT window size (default 1024)
 ```
 
 Replace `<YouTube-Video-URL>` with the actual URL of the YouTube video you want to process.
@@ -52,6 +71,8 @@ Replace `<YouTube-Video-URL>` with the actual URL of the YouTube video you want 
 
 ```
 go run src/*.go -url "https://www.youtube.com/watch?v=dQw4w9WgXcQ" -output rickroll.png
+// After building
+./downloader -url "https://www.youtube.com/watch?v=dQw4w9WgXcQ" -output rickroll.png
 ```
 
 This command will download the audio from the specified YouTube video and generate a spectrogram image named `rickroll.png` in the current directory.

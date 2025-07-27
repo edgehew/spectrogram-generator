@@ -49,15 +49,12 @@ func GenerateSpectrogram(inputPath, outputPath string, windowSize, hopSize int) 
 	width := len(samples)/(hopSize*numChannels) + 1
 	height := windowSize / 2 // Nyquist frequency
 	spectrogram := make([][]float64, width)
+	samplesLength := len(samples)
 
 	// Compute FFT for each window
 	for i := range width {
 		start := i * hopSize
-		end := start + windowSize
-		if end > len(samples) {
-			end = len(samples)
-		}
-		if start >= len(samples) {
+		if start >= samplesLength {
 			break
 		}
 
@@ -71,7 +68,7 @@ func GenerateSpectrogram(inputPath, outputPath string, windowSize, hopSize int) 
 		// Compute FFT
 		fftResult := fft.FFTReal(window)
 		spectrogram[i] = make([]float64, height)
-		for j := 0; j < height; j++ {
+		for j := range height {
 			// Convert to magnitude (dB)
 			mag := math.Sqrt(real(fftResult[j])*real(fftResult[j]) + imag(fftResult[j])*imag(fftResult[j]))
 			if mag > 0 {
@@ -85,7 +82,7 @@ func GenerateSpectrogram(inputPath, outputPath string, windowSize, hopSize int) 
 	// Normalize spectrogram for visualization
 	maxDB := -100.0
 	minDB := 0.0
-	for i := 0; i < len(spectrogram); i++ {
+	for i := range len(spectrogram) {
 		for j := 0; j < len(spectrogram[i]); j++ {
 			if spectrogram[i][j] > maxDB {
 				maxDB = spectrogram[i][j]
@@ -98,8 +95,8 @@ func GenerateSpectrogram(inputPath, outputPath string, windowSize, hopSize int) 
 
 	// Create colored image
 	dc := gg.NewContext(width, height)
-	for x := 0; x < width; x++ {
-		for y := 0; y < height; y++ {
+	for x := range width {
+		for y := range height {
 			normalized := (spectrogram[x][y] - minDB) / (maxDB - minDB)
 			// Map to color gradient (blue -> green -> yellow -> red)
 			r, g, b := colorGradient(normalized)
