@@ -54,7 +54,7 @@ Replace `<YouTube-Video-URL>` with the actual URL of the YouTube video you want 
 go run src/*.go -url "https://www.youtube.com/watch?v=dQw4w9WgXcQ" -output rickroll.png
 ```
 
-This command will download the audio from the specified YouTube video and generate a spectrogram image named `spectrogram.png` in the current directory.
+This command will download the audio from the specified YouTube video and generate a spectrogram image named `rickroll.png` in the current directory.
 
 ## License
 
