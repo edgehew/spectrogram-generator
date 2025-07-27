@@ -9,11 +9,11 @@ This project relies on ffmepg to convert downloaded audio files to WAV format.
 ```
 youtube-spectrogram
 ├── src
-│   ├── main.go          # Entry point of the application
 │   ├── downloader.go    # Functions for downloading audio from YouTube
+│   ├── main.go          # Entry point of the application
 │   ├── spectrogram.go   # Functions for generating the audio spectrogram
-│   └── utils.go         # Utility functions for logging and error handling
-├── go.mod               # Module definition and dependencies
+│   ├── utils.go         # Utility functions for checking if a file exists
+│   └── wavConverter.go  # Uses ffmpeg to convert an audio file to wav format
 └── README.md            # Project documentation
 ```
 
