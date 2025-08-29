@@ -4,6 +4,8 @@ This project is a Go application that allows users to generate an audio spectrog
 
 This project relies on ffmepg to convert downloaded audio files to WAV format.
 
+**NOTE**: With recent updates to Youtube you may get a 403 error when trying to save the audio to a file. This is a recent change to prevent bots. I found if you are playing the video when running the application, this appears to bypass the download request.
+
 ## Project Structure
 
 ```
@@ -21,8 +23,8 @@ youtube-spectrogram
 
 1. **Clone the repository:**
    ```
-   git clone https://github.com/yourusername/youtube-spectrogram.git
-   cd youtube-spectrogram
+   git clone https://github.com/edgehew/spectrogram-generator.git
+   cd spectrogram-generator
    ```
 
 2. **Install Go:** Make sure you have Go installed on your machine. You can download it from [golang.org](https://golang.org/dl/).
